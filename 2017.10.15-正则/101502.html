@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>敏感词替换</title>
+	</head>
+	<body>
+		
+		<script>
+			
+			 var str = '中国共产党总书记习近平说:“法轮功是邪教”';
+			 
+			 str = str.replace(/共产党|习近平|法轮|邪教/g,function($0){//$0参数是匹配到的字符
+			 	
+			 	var temp = '';
+			 	
+			 	for(var i=0;i<$0.length;i++){
+			 		temp += '*';
+			 	}
+			 	
+			 	return temp;
+			 	
+			 })
+			 
+			 console.log(str)
+			
+		</script>
+		
+	</body>
+</html>
