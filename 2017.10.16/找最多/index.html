@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		
+		<script>
+		
+			var str = '0dz630d0h0dfg3090490110g0y101409s019090fa09g07';
+			
+			
+			/**********************正则的方法*****************/
+			//记录字符的个数
+			var min = -Infinity;
+			
+			//记录最多的字符
+			var index = '';
+			
+			//把字符串先用split转成数组，然后利用sort进行排序（也就是把相同的放在一起），再用join重新组成字符串
+			str = str.split('').sort().join('');
+			
+			//利用replace的方法以及子项
+			str.replace(/(\w)\1*/g,function($0,$1){
+				console.log($0);
+				//console.log($1);
+				if(min<$0.length){
+					//找出最多的那个
+					min = $0.length;
+					//然后将最多的那个赋值给index
+					index = $1;
+				}
+			})
+			
+			console.log('最多的是'+ index + '，有' + min + '个');
+			//console.log(str);
+			
+			
+			/**********************************普通的方法********************************/
+			
+			//存储字符串不同字符的对象
+			var json = {};
+			
+			//记录字符的个数
+			var min = -Infinity;
+			
+			//记录最多的是哪个字符
+			var index = '';
+			
+			//对字符串进行遍历
+			for(var i=0;i<str.length;i++){
+				if(!json[str[i]]){	//初始化，先把每个字符放进json，并确定个数为1
+					json[str[i]] = 1;
+				}else{				//如果再次遇到相同的字符，则个数加1
+					json[str[i]] ++;
+				}
+			}
+			//console.log(json)
+			//然后对json进行整理
+			for(var attr in json){
+				if(json[attr] > min){
+					//获取到个数最大的值
+					min = json[attr];
+					//获取到个数最多的内容
+					index = attr;
+				}
+			}
+			
+			console.log('最多的是'+ index + '，有' + min + '个');
+			
+		</script>
+		
+	</body>
+		
+</html>
+
+
+
+
+
+

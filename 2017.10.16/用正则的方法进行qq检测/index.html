@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.ok{
+				border:1px solid green;
+    			color:green;
+			}
+			.error{
+			    border:1px solid red;
+			    color:red;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" id="text"/>
+		<input type="button" value="提交" id="btn"/>
+		
+		<script>
+			
+			var textBox = document.querySelector('#text');
+			var btn = document.querySelector('#btn');
+			
+			btn.onclick = function(){
+				//获取输入框的value
+				var t = textBox.value;
+				
+				if(t){//如果输入内容的情况
+					//[1-9]是首位确定不是0，\d{4,11}是指最少4个，最多11个数字，trim是为了取消前后的空格
+					if(/^[1-9]\d{4,11}$/.test(t.trim())){
+						//如果通过就给textBox添加className'ok'
+						textBox.className = 'ok';
+					}else{
+						//如果不通过就给textBox添加className'error'
+						textBox.className = 'error';
+					}
+					
+					//textBox.className = /^[1-9]\d{4,11}$/.test(t.trim())?'ok':'error';
+					
+				}else{//如果没有输入内容的情况
+					alert('请输入内容！');
+				}
+				
+				//三元的写法
+				
+				//t?textBox.className = /^[1-9]\d{4,11}$/.test(t.trim())?'ok':'error':alert('请输入内容！');
+			}
+			
+		</script>
+		
+		
+	</body>
+</html>
